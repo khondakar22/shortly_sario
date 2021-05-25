@@ -1,0 +1,8 @@
+{
+  "/api": {
+      "target": "https://api.shrtco.de/v2",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+  }
+}

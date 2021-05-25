@@ -1,0 +1,130 @@
+
+<nav class="navbar navbar-expand-lg navbar-light " id="main-nav">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="../assets/images/logo.svg" class="img-fluid" alt="Responsive image">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Feature</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Resources</a>
+        </li>
+      </ul>
+      <span class="d-flex justify-content-end">
+        <a class="nav-link" href="#">Login</a>
+        <button class="btn btn-outline-success" type="submit">Signup</button>
+      </span>
+    </div>
+  </div>
+</nav>
+
+  <!-- HOME SECTION -->
+  <header id="home-section">
+    <div>
+      <div class="home-inner container">
+        <div class="row">
+          <div class="col-lg-6 d-none d-lg-block ">
+            <h1 class="display-4">
+              <strong>More than just shorter links</strong> 
+            </h1>
+            <p class="align-self-end">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, tempore iusto in minima facere dolorem!
+            </p>
+            <div>
+              <button class="btn btn-outline-success">Get Started</button>
+            </div>
+         
+          </div>
+          <div class="col-lg-6 ">
+          <img src="../assets/images/illustration-working.svg" class="img-fluid" alt="Responsive image">
+         
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="body_section" class="pt-4">
+    <div  class="container">
+    
+        <div class="row">
+          <div class="col-lg-10">
+            <form [formGroup]="shortlyForm">
+              <div class="form-group">
+                <input type="text" class="form-control" id="exampleInputEmail1"
+                formControlName="shortUrlInput"
+                aria-describedby="emailHelp" placeholder="Enter URL">
+              </div>
+      
+            
+            </form>
+           
+          </div>
+          <div class="col-lg-2">
+            <button type="submit"
+              (click)="getShortenLink(shortlyForm)" [disabled]="shortlyForm.invalid || loading" class="btn btn-primary">Shorten It!</button>
+          </div>
+        </div>
+        
+        <div *ngIf="loading" class="d-flex justify-content-center p-5">
+          <div class="spinner-border" role="status">
+          </div>
+        </div>
+
+      <div *ngIf="shortenUrlObject" class="row pt-4">
+        <table class="table table-hover table-dark">
+          <thead>
+            <tr>
+              <th scope="col">Original Link</th>
+              <th scope="col">Short Link</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+           
+            <tr>
+              <td>{{shortenUrlObject.original_link}}</td>
+              <td>{{shortenUrlObject.short_link2}}</td>
+              <td>
+                <button 
+                ngxClipboard
+                        [cbContent]="shortenUrlObject.short_link2"
+                        (cbOnSuccess)="isCopied1 = true"
+                        [class.btn-success]="isCopied1"
+                class="btn btn-primary">Copied</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+    
+
+  </section>
+
+
+
+  <footer id="main-footer" class="bg-dark">
+    <div class="container">
+      <div class="row">
+        <div class="col text-center py-4">
+          <h3>Shortly</h3>
+          <p>Copyright &copy;
+            <span>{{copyWriteYear}}</span>
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </footer>
